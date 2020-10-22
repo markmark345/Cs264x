@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 var express = require('express');
 var path = require('path');
 var https = require('https');
@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render('index', {fname: 'Songsakdi', lName: 'Rongviri'});
+    res.render('index', {fname: 'gutohrs', lName: 'hewgors'});
 });
 
 app.listen(PORT, function () {
@@ -21,8 +21,14 @@ app.listen(PORT, function () {
 
 app.get('/api', function (req, res) {
     const queryParams = req.query;
-    console.log('param[1]:' + queryParams['user']);
-    res.send(queryParams);
+    if(queryParams['user'] == 'a' && queryParams['pwd'] == '123'){
+        res.send('login sucess');
+    }
+    else{
+         
+        res.send('login fail');
+    }
+
 });
 
 

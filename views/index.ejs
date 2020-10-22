@@ -1,42 +1,108 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #FF00FF;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #7cfc00;
+}
+</style>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body>
+
 <div class="jumbotron text-center">
   <div class="container">
-    <p>First Name: <%= fname %></p>
-	<p>Last Name: <%=lName %></p>
-   </div>
+  
+  <!--
+    <p>First Name:  fname </p>
+	<p>Last Name: lName </p>
+	<P>Address: city park </p>
+-->	
+ 
+   
 </div>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>พวกผมมันของจริงที่สุด</h3>
+      <p>ฮิวโก้หิวข้าวมั้ย</p>
+      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
     </div>
     <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>พวกผมมันของจริงที่สุด</h3>
+      <p>ฮิวโก้หิวข้าวมั้ย</p>
+      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
     </div>
     <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3>พวกผมมันของจริงที่สุด</h3>        
+      <p>ฮิวโก้หิวข้าวมั้ย</p>
+      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
     </div>
   </div>
 </div>
 
+
+  <table class="table">
+    <thead>
+   <tr class="table-danger">
+    <th>ชื่อ</th>
+    <th>นามสกุล</th>
+    <th>ที่อยู๋</th>
+	<th>แก๊ง</th>
+  </tr>
+  
+	 <tr class="table-warning">
+    <td>นาวี</td>
+    <td>กลัวเมีย</td>
+    <td>บ้าน</td>
+	<td>เจ้าเวหา</td>
+  </tr>
+   <tr class="table-success">
+    <td>นาวี</td>
+    <td>กลัวเมีย</td>
+    <td>บ้าน</td>
+	<td>เจ้าเวหา</td>
+  </tr>
+  <tr class="table-primary">
+    <td>นาวี</td>
+    <td>กลัวเมีย</td>
+    <td>บ้าน</td>
+	<td>เจ้าเวหา</td>
+  </tr>
+	  </tbody>
+  </table>
+
+  <form action="/api">
+  <label for="user">User Name:</label><br>
+  <input type="text" id="user" name="user" value=""><br>
+  <label for="pwd">Password:</label><br>
+  <input type="password" id="pwd" name="pwd" value=""><br><br>
+  <input type="submit" value="Ok">
+    <input type="reset" value="Cancel">
+</form> 
+
+
 </body>
 </html>
+
