@@ -4,21 +4,24 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 </head>
 
 <body>
 <div class="jumbotron text-center">
   <div class="container">
-    <p>First Name: <%= fname %></p>
-	<p>Last Name: <%=lName %></p>
+  <img src= "http://www.cs.tu.ac.th/uploads/upfiles/images/professor/songsakdi_s.jpg" width="304" height="236">
+    <p>First Name: <% fname %> Songsakdi </p>
+	<p>Last Name: <% lName %> Rongviriyapanish</p>
    </div>
 </div>
 
-<div class="container">
+<div class="container p-3 my-3 bg-dark text-white">
   <div class="row">
     <div class="col-sm-4">
       <h3>Column 1</h3>
@@ -36,6 +39,46 @@
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
   </div>
+</div>
+
+<div class="container">
+	<table class="table table-striped">
+		<tr>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Address</th>
+		</tr>
+		<tr>
+			<th style="color:blue;">Natapatchara</th>
+			<th style="color:blue;">Anuroje</th>
+			<th style="color:blue;">C10</th>
+		</tr>
+		<tr>
+			<th style="color:red;"><i> Supawit </i></th>
+			<th style="color:red;"><i> Itthisiriwet </i></th>
+			<th style="color:red;"><i> Mark 's  house </i></th>
+		</tr>
+	</table>
+</div>
+
+<div class="container">
+<form action="/api">
+	<h3> Log in </n>
+  <div class="form-group">
+    <label for="user">User address:</label>
+    <input type="text" id="user" name= "user"  class="form-control" placeholder="Enter username" >
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="text" class="form-control" placeholder="Enter password" id="pwd">
+  </div>
+  <div class="form-group form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 </div>
 
 </body>
