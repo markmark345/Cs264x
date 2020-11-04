@@ -2,27 +2,40 @@
 <html>
 <head>
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+ 
+
+ body {
+  background-image: url("https://media.discordapp.net/attachments/361424692172816387/773484998467649546/unknown.png?width=957&height=677");  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
 }
 
-td, th {
-  border: 1px solid #FF00FF;
-  text-align: left;
-  padding: 8px;
+.login{
+  text-align: center;
+  margin-top: 150px;
+  border: 2px solid black;
+  margin-left: 700px;
+  margin-right: 700px;
+  margin-bottom: 200px;
+  padding: 30px;
+  
 }
 
-tr:nth-child(even) {
-  background-color: #7cfc00;
+.header555{
+  margin-top: 100px;
+  text-align: center;
 }
+
+ 
 </style>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <link  href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -30,78 +43,26 @@ tr:nth-child(even) {
 </head>
 
 <body>
+ <div class ="header555">
 
-<div class="jumbotron text-center">
-  <div class="container">
+  <img src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png" alt="TU" >
+
+
+ </div>
+
   
-  <!--
-    <p>First Name:  fname </p>
-	<p>Last Name: lName </p>
-	<P>Address: city park </p>
--->	
- 
-   
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>พวกผมมันของจริงที่สุด</h3>
-      <p>ฮิวโก้หิวข้าวมั้ย</p>
-      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>พวกผมมันของจริงที่สุด</h3>
-      <p>ฮิวโก้หิวข้าวมั้ย</p>
-      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>พวกผมมันของจริงที่สุด</h3>        
-      <p>ฮิวโก้หิวข้าวมั้ย</p>
-      <p>ฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ยฮิวโก้หิวข้าวมั้ย</p>
-    </div>
-  </div>
-</div>
-
-
-  <table class="table">
-    <thead>
-   <tr class="table-danger">
-    <th>ชื่อ</th>
-    <th>นามสกุล</th>
-    <th>ที่อยู๋</th>
-	<th>แก๊ง</th>
-  </tr>
+  <div class="login">
   
-	 <tr class="table-warning">
-    <td>นาวี</td>
-    <td>กลัวเมีย</td>
-    <td>บ้าน</td>
-	<td>เจ้าเวหา</td>
-  </tr>
-   <tr class="table-success">
-    <td>นาวี</td>
-    <td>กลัวเมีย</td>
-    <td>บ้าน</td>
-	<td>เจ้าเวหา</td>
-  </tr>
-  <tr class="table-primary">
-    <td>นาวี</td>
-    <td>กลัวเมีย</td>
-    <td>บ้าน</td>
-	<td>เจ้าเวหา</td>
-  </tr>
-	  </tbody>
-  </table>
-
   <form action="/api">
-  <label for="user">User Name:</label><br>
-  <input type="text" id="user" name="user" value=""><br>
-  <label for="pwd">Password:</label><br>
-  <input type="password" id="pwd" name="pwd" value=""><br><br>
-  <input type="submit" value="Ok">
-    <input type="reset" value="Cancel">
+  <label class for="user">เลขทะเบียนนักศึกษา:</label><br>
+  <input type="text" id="user" placeholder="เลขทะเบียนนักศึกษา" name="user" value=""><br>
+  <label for="pwd">รหัสผ่าน:</label><br>
+  <input type="password" id="pwd" placeholder="รหัสผ่าน" name="pwd" value=""><br><br>
+  <input type="submit" value="เข้าสู่ระบบ">
+    <input type="reset" value="ยกเลิก">
+  
 </form> 
-
+  </div>
 
 </body>
 </html>
