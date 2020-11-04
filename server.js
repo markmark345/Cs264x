@@ -1,39 +1,121 @@
-﻿'use strict';
-var express = require('express');
-var path = require('path');
-var https = require('https');
-var http = require('http');
+﻿// TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f
+"use strict";
 
-var PORT  = process.env.PORT || 5000;
+var express = require("express");
+var path = require("path");
+var https = require("https");
+var http = require("http");
 
+var PORT = process.env.PORT || 5000;
 var app = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-app.get('/', function (req, res) {
-    res.render('index', {fname: 'gutohrs', lName: 'hewgors'});
+app.get("/", function (req, res) {
+  res.render("index", { fname: "gutohrs", lName: "hewgors" });
 });
 
 app.listen(PORT, function () {
-    console.log(`Listening on ${PORT}`)
+  console.log(`Listening on ${PORT}`);
 });
 
-app.get('/api', function (req, res) {
-    const queryParams = req.query;
-    if(queryParams['user'] == 'a' && queryParams['pwd'] == '123'){
-        res.send('login sucess');
-    }
-    else{
-         
-        res.send('login fail');
-    }
-
+app.get("/api", async (req, res) => {
+  const queryParams = req.query;
+  let result = '';
+  //if (queryParams["user"] == "a" && queryParams["pwd"] == "123") {
+      const temp = await getStudentInfo(queryParams["user"]); //test();
+      console.log(temp);
+      if (temp) {
+          let j = JSON.parse(temp);
+          res.send("Welcome " + j.data.displayname_th);
+      } else {
+          res.send("login fail");
+      }
+      //console.log(result);
+    //res.send(JSON.stringify(temp));
+  //} else {
+   // res.send("login fail");
+ // }
 });
 
+//var https = require('https');
+
+const getStudentInfo = (username) => {
+    return new Promise((resolve, reject) => {
+        var options = {
+            'method': 'GET',
+            'hostname': 'restapi.tu.ac.th',
+            'path': '/api/v2/profile/std/info/?id='+ username,
+            'headers': {
+              'Content-Type': 'application/json',
+              'Application-Key':'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f',
+            },
+          };
+
+          var req = https.request(options, (res) => {
+            var chunks = [];
+    
+
+            res.on("data", function (chunk) {
+              chunks.push(chunk);
+            });
+        
+            res.on("end", function (chunk) {
+                
+               var body = Buffer.concat(chunks);
+               //result = body;
+               resolve(body.toString());
+                //result = chunks;
+            });
+        
+            res.on("error", function (error) {
+              console.error(error);
+              reject(error);
+            });
+          })
+
+          req.end();
+    })
+}
+
+function test() {
 
 
+    var options = {
+        'method': 'GET',
+        'hostname': 'restapi.tu.ac.th',
+        'path': '/api/v2/profile/std/info/?id=6209650016',
+        'headers': {
+          'Content-Type': 'application/json',
+          'Application-Key':'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f',
+        },
+      };
 
+  var req = https.request(options, function (res) {
+    var chunks = [];
+    
+
+    res.on("data", function (chunk) {
+      chunks.push(chunk);
+    });
+
+    res.on("end", function (chunk) {
+        
+       var body = Buffer.concat(chunks);
+       result = body.toString();
+
+        //result = chunks;
+    });
+
+    res.on("error", function (error) {
+      console.error(error);
+    });
+  });
+
+  req.end();
+
+}
 
 //var options = {
 //    'method': 'POST',
@@ -61,7 +143,6 @@ app.get('/api', function (req, res) {
 //        console.error(error);
 //    });
 //});
-
 
 //var options = {
 //    'method': 'GET',
@@ -92,48 +173,47 @@ app.get('/api', function (req, res) {
 
 //req.end();
 
+// const options = {
+//     hostname: 'jsonplaceholder.typicode.com',
+//     path: '/posts/1/comments',
+//     method: 'GET',
+//     'headers': {
+//         'Content-Type': 'application/json',
+//     }
+// };
 
-const options = {
-    hostname: 'jsonplaceholder.typicode.com',
-    path: '/posts/1/comments',
-    method: 'GET',
-    'headers': {
-        'Content-Type': 'application/json',
-    }
-};
+// function dataCounter(inputs) {
+//     let counter = 0;
+//     for (const input of inputs) {
+//         if (input.postId === 1) {
+//             counter += 1;
+//             console.log('input.postId:' + input.postId);
+//             console.log('input.email:' + input.email);
+//         }
+//     }
+//     return counter;
+// };
 
-function dataCounter(inputs) {
-    let counter = 0;
-    for (const input of inputs) {
-        if (input.postId === 1) {
-            counter += 1;
-            console.log('input.postId:' + input.postId);
-            console.log('input.email:' + input.email);
-        }
-    }
-    return counter;
-};
+// const req = http.request(options, function(response) {
+//     response.setEncoding('utf8');
+//     var body = '';
+//     response.on('data', chunk => {
+//         body += chunk;
+//     });
 
-const req = http.request(options, function(response) {
-    response.setEncoding('utf8');
-    var body = '';
-    response.on('data', chunk => {
-        body += chunk;
-    });
+//     response.on('end', () => {
+//         console.log('body:' + body);
+//         var data = JSON.parse(body);
+//         console.log('number of posts:' + dataCounter(data));
+//         console.log('data:' + data);
+//         console.log('data[0]:' + data[0]);
+//         console.log('data[0].id:' + data[0].id);
+//         console.log('data[0].email:' + data[0].email);
+//         console.log('end of GET request');
+//     });
+// });
 
-    response.on('end', () => {
-        console.log('body:' + body);
-        var data = JSON.parse(body);
-        console.log('number of posts:' + dataCounter(data));
-        console.log('data:' + data);
-        console.log('data[0]:' + data[0]);
-        console.log('data[0].id:' + data[0].id);
-        console.log('data[0].email:' + data[0].email);
-        console.log('end of GET request');
-    });
-});
-
-req.on('error', e => {
-    console.log('Problem with request:', e.message);
-});
-req.end();
+// req.on('error', e => {
+//     console.log('Problem with request:', e.message);
+// });
+// req.end();
