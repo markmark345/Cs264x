@@ -4,7 +4,7 @@
 var express = require("express");
 var path = require("path");
 var https = require("https");
-var http = require("http");
+var http = require("https");
 
 var PORT = process.env.PORT || 5000;
 var app = express();
@@ -22,100 +22,175 @@ app.listen(PORT, function () {
 
 app.get("/api", async (req, res) => {
   const queryParams = req.query;
-  let result = '';
-  //if (queryParams["user"] == "a" && queryParams["pwd"] == "123") {
-      const temp = await getStudentInfo(queryParams["user"]); //test();
-      console.log(temp);
-      if (temp) {
-          let j = JSON.parse(temp);
-          res.send("Welcome " + j.data.displayname_th);
-      } else {
-          res.send("login fail");
-      }
-      //console.log(result);
-    //res.send(JSON.stringify(temp));
+  let result = "";
+  //if (queryParams["user"] == "UserName" && queryParams["pwd"] == "PassWord") {
+  const temp = await getlogin(queryParams["user"], queryParams["pwd"]); //test();
+  console.log("temp = " + temp);
+  if (temp) {
+    let j = JSON.parse(temp);
+    console.log(j);
+    if (j.status) {
+      res.send("Name th: " + j.displayname_th);
+    } else{
+      res.send("login fail");
+    }
+    
+    // if (j.data.status == true) {
+    //   res.send("สถานะ:  นักศึกษา")
+    // } else (j.data.status)
+    // req.send("สถานะ: พ้นสถาพ")
+  } else {
+    res.send("login fail");
+  }
+  //console.log(result);
+  //res.send(JSON.stringify(temp));
   //} else {
-   // res.send("login fail");
- // }
+  // res.send("login fail");
+  // }
 });
 
-//var https = require('https');
+// var options = {
+//   method: "POST",
+//   hostname: "restapi.tu.ac.th",
+//   path: "/api/v1/auth/Ad/verify",
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Application-Key":
+//       "TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f",
+//   },
+// };
+
+// var req = https.request(options, function (res) {
+//   var chunks = [];
+
+//   res.on("data", function (chunk) {
+//     chunks.push(chunk);
+//   });
+
+//   res.on("end", function (chunk) {
+//     var body = Buffer.concat(chunks);
+//     console.log(body.toString());
+//   });
+
+//   res.on("error", function (error) {
+//     console.error(error);
+//   });
+// });
+// var postData = '{\n\t"UserName":"{username}",\n\t"PassWord":"{password}"\n}';
+
+// req.write(postData);
+
+// req.end();
+
+const getlogin = (userName, password) => {
+  return new Promise((resolve, reject) => {
+    var options = {
+      'method': 'POST',
+      'hostname': 'restapi.tu.ac.th',
+      'path': '/api/v1/auth/Ad/verify',
+      'headers': {
+        'Content-Type': 'application/json',
+        'Application-Key': 'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f'
+      }
+    };
+
+    var req = https.request(options, (res) => {
+      var chunks = [];
+
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
+
+      res.on("end", function (chunk) {
+        var body = Buffer.concat(chunks);
+        //result = body;
+        resolve(body.toString());
+        //result = chunks;
+      });
+
+      res.on("error", function (error) {
+        console.error(error);
+        reject(error);
+      });
+    });
+    var postData =  "{\n\t\"UserName\":\"" + userName + "\",\n\t\"PassWord\":\""+ password + "\"\n}";
+    req.write(postData);
+    req.end();
+  });
+};
 
 const getStudentInfo = (username) => {
-    return new Promise((resolve, reject) => {
-        var options = {
-            'method': 'GET',
-            'hostname': 'restapi.tu.ac.th',
-            'path': '/api/v2/profile/std/info/?id='+ username,
-            'headers': {
-              'Content-Type': 'application/json',
-              'Application-Key':'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f',
-            },
-          };
-
-          var req = https.request(options, (res) => {
-            var chunks = [];
-    
-
-            res.on("data", function (chunk) {
-              chunks.push(chunk);
-            });
-        
-            res.on("end", function (chunk) {
-                
-               var body = Buffer.concat(chunks);
-               //result = body;
-               resolve(body.toString());
-                //result = chunks;
-            });
-        
-            res.on("error", function (error) {
-              console.error(error);
-              reject(error);
-            });
-          })
-
-          req.end();
-    })
-}
-
-function test() {
-
-
+  return new Promise((resolve, reject) => {
     var options = {
-        'method': 'GET',
-        'hostname': 'restapi.tu.ac.th',
-        'path': '/api/v2/profile/std/info/?id=6209650016',
-        'headers': {
-          'Content-Type': 'application/json',
-          'Application-Key':'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f',
-        },
-      };
+      method: "GET",
+      hostname: "restapi.tu.ac.th",
+      path: "/api/v2/profile/std/info/?id=" + username,
+      headers: {
+        "Content-Type": "application/json",
+        "Application-Key":
+          "TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f",
+      },
+    };
 
-  var req = https.request(options, function (res) {
-    var chunks = [];
-    
+    var req = https.request(options, (res) => {
+      var chunks = [];
 
-    res.on("data", function (chunk) {
-      chunks.push(chunk);
-    });
+      res.on("data", function (chunk) {
+        chunks.push(chunk);
+      });
 
-    res.on("end", function (chunk) {
-        
-       var body = Buffer.concat(chunks);
-       result = body.toString();
-
+      res.on("end", function (chunk) {
+        var body = Buffer.concat(chunks);
+        //result = body;
+        resolve(body.toString());
         //result = chunks;
+      });
+
+      res.on("error", function (error) {
+        console.error(error);
+        reject(error);
+      });
     });
 
-    res.on("error", function (error) {
-      console.error(error);
-    });
+    req.end();
   });
+};
 
-  req.end();
+// function test() {
 
-}
+//     var options = {
+//         'method': 'GET',
+//         'hostname': 'restapi.tu.ac.th',
+//         'path': '/api/v2/profile/std/info/?id=6209650016',
+//         'headers': {
+//           'Content-Type': 'application/json',
+//           'Application-Key':'TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f',
+//         },
+//       };
+
+//   var req = https.request(options, function (res) {
+//     var chunks = [];
+
+//     res.on("data", function (chunk) {
+//       chunks.push(chunk);
+//     });
+
+//     res.on("end", function (chunk) {
+
+//        var body = Buffer.concat(chunks);
+//        result = body.toString();
+
+//         //result = chunks;
+//     });
+
+//     res.on("error", function (error) {
+//       console.error(error);
+//     });
+//   });
+
+//   req.end();
+
+// }
 
 //var options = {
 //    'method': 'POST',
