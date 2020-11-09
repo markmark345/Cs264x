@@ -5,9 +5,13 @@ var express = require("express");
 var path = require("path");
 var https = require("https");
 var http = require("https");
+var bodyParser = require("body-parser");
 
 var PORT = process.env.PORT || 5000;
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -20,19 +24,42 @@ app.listen(PORT, function () {
   console.log(`Listening on ${PORT}`);
 });
 
-app.get("/api", async (req, res) => {
-  const queryParams = req.query;
-  let result = "";
-  //if (queryParams["user"] == "UserName" && queryParams["pwd"] == "PassWord") {
-  const temp = await getlogin(queryParams["user"], queryParams["pwd"]); //test();
+app.get("/welcome/:id", async function(req, res){ 
+  var nameid = req.params.id;
+  console.log(nameid);
+  const data = await getStudentInfo(nameid);
+  console.log(data);
+  if (data) {
+    let j = JSON.parse(data);
+    res.render("welcome", 
+    {prefix: j.data.prefixname,
+     name_th: j.data.displayname_th,
+     name_en: j.data.displayname_en,
+     email: j.data.email,
+     faculty: j.data.faculty,
+     department: j.data.department
+     });
+  }
+  
+  
+
+});
+
+app.post("/api", async (req, res) => {
+  //const queryParams = req.query;
+  //let result = "";
+  //console.log(queryParams);
+  console.log(req.body);
+  const temp = await getlogin(req.body.user, req.body.pwd); 
   console.log("temp = " + temp);
   if (temp) {
     let j = JSON.parse(temp);
     console.log(j);
-    if (j.status) {
-      res.send("Name th: " + j.displayname_th);
+    if (j.status == true) {
+      res.send(temp);
+      //res.send("Name th: " + j.displayname_th);
     } else{
-      res.send("login fail");
+      res.send('{"status":false}');
     }
     
     // if (j.data.status == true) {
@@ -40,7 +67,7 @@ app.get("/api", async (req, res) => {
     // } else (j.data.status)
     // req.send("สถานะ: พ้นสถาพ")
   } else {
-    res.send("login fail");
+    res.send('{"status":false}');
   }
   //console.log(result);
   //res.send(JSON.stringify(temp));
@@ -48,39 +75,6 @@ app.get("/api", async (req, res) => {
   // res.send("login fail");
   // }
 });
-
-// var options = {
-//   method: "POST",
-//   hostname: "restapi.tu.ac.th",
-//   path: "/api/v1/auth/Ad/verify",
-//   headers: {
-//     "Content-Type": "application/json",
-//     "Application-Key":
-//       "TU2791e6ef3a03ece19159c4309b047384b84008287834e184cef9943a97936ce4436bb097531501a1c3fdf8029ec9332f",
-//   },
-// };
-
-// var req = https.request(options, function (res) {
-//   var chunks = [];
-
-//   res.on("data", function (chunk) {
-//     chunks.push(chunk);
-//   });
-
-//   res.on("end", function (chunk) {
-//     var body = Buffer.concat(chunks);
-//     console.log(body.toString());
-//   });
-
-//   res.on("error", function (error) {
-//     console.error(error);
-//   });
-// });
-// var postData = '{\n\t"UserName":"{username}",\n\t"PassWord":"{password}"\n}';
-
-// req.write(postData);
-
-// req.end();
 
 const getlogin = (userName, password) => {
   return new Promise((resolve, reject) => {

@@ -1,69 +1,193 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-<style>
- 
+  <head>
+    <style>
+      body {
+        background-image: url("https://media.discordapp.net/attachments/361424692172816387/773484998467649546/unknown.png?width=957&height=677");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
 
- body {
-  background-image: url("https://media.discordapp.net/attachments/361424692172816387/773484998467649546/unknown.png?width=957&height=677");  
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-}
+      #login .container #login-row #login-column #login-box {
+        /* margin-top: 120px; */
+        max-width: 600px;
+        height: 320px;
+        border: 1px solid #f0ad4e;
+        background-color: #fcf8f2;
+      }
 
-.login{
-  text-align: center;
-  margin-top: 150px;
-  border: 2px solid black;
-  margin-left: 700px;
-  margin-right: 700px;
-  margin-bottom: 200px;
-  padding: 30px;
-  
-}
+      #login .container #login-row #login-column #login-box #login-form {
+        padding: 20px;
+      }
 
-.header555{
-  margin-top: 100px;
-  text-align: center;
-}
+      #login
+        .container
+        #login-row
+        #login-column
+        #login-box
+        #login-form
+        #register-link {
+        margin-top: -85px;
+      }
 
- 
-</style>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+      /* .login {
+        text-align: center;
+        margin-top: 150px;
+        border: 2px solid black;
+        margin-left: 700px;
+        margin-right: 700px;
+        margin-bottom: 200px;
+        padding: 30px;
+      } */
 
-  
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link  href="css/style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-</head>
+      .my-text-info {
+        color: #0c0c0c;
+      }
+      .header555 {
+        margin-bottom: 30px;
+        margin-top: 100px;
+        text-align: center;
+      }
+      .my-btn-info {
+        color: #fff;
+        background-color: #c00831 !important;
+        border-color: #c00831 !important;
+      }
 
-<body>
- <div class ="header555">
+      .error {
+        color: red;
+      }
+      .has-error label,
+        .has-error input,
+        .has-error textarea {
+            color: red;
+            border-color: red;
+        }
+    </style>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <img src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png" alt="TU" >
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+  </head>
 
+  <body>
+    <div class="header555">
+      <img
+        src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png"
+        alt="TU"
+      />
+    </div>
+    <div id="login">
+      <!-- <h3 class="text-center  pt-5"></h3> -->
+      <div class="container">
+        <div
+          id="login-row"
+          class="row justify-content-center align-items-center"
+        >
+          <div id="login-column" class="col-md-6">
+            <div id="login-box" class="col-md-12">
+              <form id="login-form" class="form" action="/api" method="post" novalidate>
+                <h3 class="text-center my-text-info">Login</h3>
+                <div class="form-group">
+                  <label for="user" class="my-text-info"
+                    >เลขทะเบียนนักศึกษา:</label
+                  ><br />
+                  <input
+                    type="text"
+                    name="user"
+                    id="user"
+                    class="form-control"
+                    placeholder="เลขทะเบียนนักศึกษา"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="pwd" class="my-text-info">รหัสผ่าน:</label><br />
+                  <input
+                    type="password"
+                    name="pwd"
+                    id="pwd"
+                    class="form-control"
+                    placeholder="รหัสผ่าน"
+                  />
+                </div>
+                <div class="form-group">
+                  <p id="showerror" class="error" style="display: none;">Invalid Username or Password</p>
+                </div>
+                <div class="form-group">
+                  <input
+                    type="submit"
+                    name="submit"
+                    class="btn btn-info btn-md my-btn-info"
+                    value="submit"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      async function postData(url = "", data = {}) {
+        const response = await fetch(url, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: data, // body data type must match "Content-Type" header
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+      }
+     
+      const form = document.getElementById( "login-form" );
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        var formBody = [];
+        var un = $('#user').val();
+        var pw = $('#pwd').val();
+        
+        formBody.push(encodeURIComponent("user") + '=' + encodeURIComponent(un));
+        formBody.push(encodeURIComponent("pwd") + '=' + encodeURIComponent(pw));
+        formBody = formBody.join("&").replace( /%20/g, '+' );
+        console.log(formBody);
+        postData('http://localhost:5000/api', formBody)
+        .then( data => {
+          console.log(data);
+          if (data.status) {
+            window.location = '/welcome/' + un;
+            return true;
+          } else {
+            // var se = $('#showerror')
+            document.getElementById("showerror").style.display = "block";
+            return false;
+          }
+        })
+        .catch((error) =>{
+          console.log(error);
+          return false;
+        });
 
- </div>
-
-  
-  <div class="login">
-  
-  <form action="/api">
-  <label class for="user">เลขทะเบียนนักศึกษา:</label><br>
-  <input type="text" id="user" placeholder="เลขทะเบียนนักศึกษา" name="user" value=""><br>
-  <label for="pwd">รหัสผ่าน:</label><br>
-  <input type="password" id="pwd" placeholder="รหัสผ่าน" name="pwd" value=""><br><br>
-  <input type="submit" value="เข้าสู่ระบบ">
-    <input type="reset" value="ยกเลิก">
-  
-</form> 
-  </div>
-
-</body>
+        return false;
+      });
+    </script>
+  </body>
 </html>
-
