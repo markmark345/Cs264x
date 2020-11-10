@@ -1,70 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        background-image: url("https://media.discordapp.net/attachments/361424692172816387/773484998467649546/unknown.png?width=957&height=677");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-      }
 
-      #login .container #login-row #login-column #login-box {
-        /* margin-top: 120px; */
-        max-width: 600px;
-        height: 320px;
-        border: 1px solid #f0ad4e;
-        background-color: #fcf8f2;
-      }
+<head>
+  <style>
+    #mainNav {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+      transition: background-color 0.2s ease;
+    }
 
-      #login .container #login-row #login-column #login-box #login-form {
-        padding: 20px;
-      }
+    body {
+      background-image: url("https://media.discordapp.net/attachments/361424692172816387/773484998467649546/unknown.png?width=957&height=677");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
 
-      #login
-        .container
-        #login-row
-        #login-column
-        #login-box
-        #login-form
-        #register-link {
-        margin-top: -85px;
-      }
-    
-      .adiv {
-        margin-right: 400px;
-      }
-      div.container {
-    min-height: 10em;
-    display: table-cell;
-    vertical-align: middle }
-      .acontainer {
-        /* text-align: left; */
-        width: 750px;
-        background-color: #ffffff;
-        border: 2px solid #ce0a35;
-        padding-bottom: 10px;
-      }
-      .headerdataSt {
-        padding-left: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        color: #fff;
-        background-color: #ce0a35 !important;
-      }
-      .dataSt {
-        margin-top: 50px;
-        max-width: 600px;
-        height: 400px;
-        margin-left: 50px;
-        border-left: 10px solid #ffb349;
-        background-color: #fcf8f2;
-      }
+    .hight {
+      height: 40px;
+    }
 
-      .login {
+    .none {
+      box-shadow: none !important;
+    }
+
+    .a1 {
+      color: #6c757d !important;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+    .margin-bottom {
+      margin-bottom: 10px;
+    }
+
+    .margin-top {
+      margin-top: 10px;
+    }
+
+    .margin-top-menu {
+      margin-top: -10px;
+    }
+
+    .margin-left {
+      margin-left: 0px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .container,
+    .container-fluid,
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .bcontainer {
+      box-shadow: 5px 5px #ce0a35;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .acontainer {
+      position: absolute;
+      right: 0;
+      width: 100px;
+    }
+
+    .headerdataSt {
+      padding-left: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #fff;
+      background-color: #ce0a35 !important;
+    }
+
+    .dataSt {
+      margin-top: 50px;
+      max-width: 600px;
+      height: 400px;
+      margin-left: 50px;
+      border-left: 10px solid #ffb349;
+      background-color: #fcf8f2;
+    }
+
+    /* .btn btn-default */
+
+    /* .login {
         text-align: center;
         margin-top: 150px;
         border: 2px solid black;
@@ -72,74 +111,142 @@
         margin-right: 700px;
         margin-bottom: 200px;
         padding: 30px;
-      }
+      } */
 
-      .my-text-info {
-        padding-left: 20px;
-        margin-left: 20x;
-        color: #0c0c0c;
-      }
-      .header555 {
-        /* margin-top: 30px;
-        margin-left: 100px;
-        text-align: center; */
-      }
-      .button {
-        position: relative;
-        border-radius: 5px;
-        display: block;
-        width: 75px;
-        padding: 10px;
-        text-align: center;
-        color: #fff;
-        background: #c00831 !important;
-        border-color: #c00831 !important;
-      }
-    </style>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    .my-text-info {
+      padding-left: 20px;
+      margin-left: 20x;
+      color: #0c0c0c;
+    }
 
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <link href="css/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </head>
+    .button {
+      position: relative;
+      border-radius: 5px;
+      display: block;
+      width: 75px;
+      padding: 10px;
+      text-align: center;
+      color: #fff !important;
+      background: #c00831 !important;
+      border-color: #c00831 !important;
+    }
+  </style>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <body>
-    <div class="container">
-      <div class="acontainer">
-        <div>
-          <img
-           src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png"
-            alt="TU" width="300" height="75"
-          /> 
-        </div>
-        <div class="adiv">
-          <a  class = "button", href="http://localhost:5000/"> Log out</a>
-        </div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link href="css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/f11888f5ae.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- <div  class="bcontainer">
+      <img src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png" alt="TU" width="300" height="75" /> 
+      <div class="acontainer button">
+        <a href="http://localhost:5000/", style="color:white;">Log out</a>  
       </div>
-      
-      <div class="dataSt">
-          <div id="login">
-            <h4 class = "headerdataSt">ข้อมูลส่วนบุคคล</h3>
-            <br />
-            <h6 class = "my-text-info"><%= prefix%> <%= name_en %></h6>
-            <br />
-            <h6 class = "my-text-info"><%= name_th %></h6>
-            <br />
-            <h6 class = "my-text-info"><%= email %></h6>
-            <br />
-            <h6 class = "my-text-info"><%= faculty %></h6>
-            <br />
-            <h6 class = "my-text-info"><%= department %></h6>
-            <br />
+    </div> -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <img
+          src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png"
+          alt="TU" width="300" height="75" /></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-4 my-lg-0">
+          <div class="dropdown navbar-nav ">
+            <button class="btn btn-default dropdown-toggle  none btn-sm " type="button" id="dropdownMenu1"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="glyphicon-align-justify "></span><%= prefix%>. <%= name_en %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="http://localhost:5000/" class="dropdown-item a1">หน้าแรก</a></li>
+              <li><a href="http://localhost:5000/" class="dropdown-item a1">Log out</a></li>
+            </ul>
+          </div>
+          <li class="nav-item"><i class="fas fa-user fa-3x"></i> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="masthead">
+    <div class="container">
+      <h1 style="height: 150px;">test</h1>
+    </div>
+  </header>
+  <header class="container">
+    
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="http://localhost:5000/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Welcome</li>
+      </ol>
+    </nav>
+    
+  
+    
+  </header>
+   
+  <section class="page-section">
+    <div class="container">
+      <div class="row" style="margin-bottom: 1rem;">
+        <div class="col-lg-12">
+<div class="card">
+          <div class="card-header">
+            ข้อมูลส่วนบุคคล
+          </div>
+          <div class="card-body">
+            <h6 class="my-text-info"><%= prefix%> <%= name_en %></h6>
+            <h6 class="my-text-info"><%= name_th %></h6>
+            <h6 class="my-text-info"><%= email %></h6>
+            <h6 class="my-text-info"><%= faculty %></h6>
+            <h6 class="my-text-info"><%= department %></h6>
           </div>
         </div>
+        </div>
+        
+      </div>
+      <div class="row" style="margin-bottom: 1rem;">
+        <div class="col-lg-12">
+          <div class="card">
+          <div class="card-header">
+            สถานะของคำร้อง
+          </div>
+          <div class="card-body">
+
+          </div>
+        </div>
+        </div>
+        
+      </div>
     </div>
-  </body>
+
+
+  </section>
+
+  <footer class="bg-light py-5">
+    <div class="container">
+      <div class="small text-center text-muted">Copyright © 2020 - Natapatchara Anuroje</div>
+    </div>
+  </footer>
+
+  <!-- <div class="bottom-bar">
+          <div class="w3-container w3-margin-bottom">
+            <p>
+              <button type  = "button" class="btn btn-outline-danger" data-toggle="collapse" data-target="#demo">ติดต่อเรา</button>
+              <div id="demo" class="collapse">
+                Tel : 083-xxxxxxx
+              </div>
+            </p>
+          </div>
+        </div> -->
+  </div>
+</body>
 </html>
