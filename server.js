@@ -111,6 +111,24 @@ app.get("/setCase/:id", requireJWTAuth , async function (req, res) {
   }
 });
 
+app.get("/from/:id", requireJWTAuth , async function (req, res) {
+  var name_id = req.params.id;
+  const data = await getStudentInfo(name_id);
+  console.log(data);
+  if (data) {
+    let j = JSON.parse(data);
+    res.render("from", 
+    {prefix: j.data.prefixname,
+     name_th: j.data.displayname_th,
+     name_en: j.data.displayname_en,
+     email: j.data.email,
+     faculty: j.data.faculty,
+     department: j.data.department,
+     name_id: name_id
+     });
+  }
+});
+
 app.post("/login", loginMiddleware, (req, res) => {
   console.log(res.userInfo);
   let userInfo = JSON.parse(res.userInfo);
@@ -119,7 +137,7 @@ app.post("/login", loginMiddleware, (req, res) => {
     iat: new Date().getTime()//มาจากคำว่า issued at time (สร้างเมื่อ)
  };
  let token = jwt.encode(payload, SECRET);
- res.cookie('jwt', token, {maxAge: 0});
+ res.cookie('jwt', token, {maxAge: 360000});
  res.send(userInfo);
 });
 

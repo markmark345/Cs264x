@@ -188,6 +188,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Home</li>
         <li class="breadcrumb-item"><a href="http://localhost:5000/setCase/<%- name_id -%>">ข้อมูลส่วนบุคคล</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:5000/from/<%- name_id -%>">ลงทะเบียนล่าช้า</a></li>
       </ol>
     </nav>
 
@@ -201,8 +202,14 @@
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="\assets\img\pexels-ekrulila-4244170.jpg" style="height:600px;"
+            <img class="d-block w-100 card-img" src="\assets\img\pexels-ekrulila-4244170.jpg" style="height:600px;"
               alt="First slide">
+              <div class="card-img-overlay">
+                <h3 class="card-title" style="color: #fff;">ลงทะเบียนล่าช้า</h3>
+                <p class="card-text" style="color: #fff;">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <p class="card-text" style="color: #fff;">Last updated 3 mins ago</p>
+              </div>
           </div>
           <div class="carousel-item">
             <img class="d-block w-100" src="\assets\img\bg-masthead.jpg" style="width:500px;height:600px;"
@@ -222,7 +229,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <script>
+      <!-- <script>
         var myIndex = 0;
         carousel();
 
@@ -237,7 +244,7 @@
           x[myIndex - 1].style.display = "block";
           setTimeout(carousel, 5000); // Change image every 2 seconds
         }
-      </script>
+      </script> -->
 
       <div class="row" style="margin-bottom: 1rem;">
         <div class="col-lg-12">
@@ -270,7 +277,7 @@
 
       </div>
       <div class="card bg-dark text-white">
-        <img class="card-img" src="\public\assets\img\portfolio\thumbnails\1.jpg" alt="Card image">
+        <img class="card-img" src="\assets\img\portfolio\thumbnails\1.jpg" alt="Card image">
         <div class="card-img-overlay">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
