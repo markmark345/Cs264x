@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light py-3" id="mainNav2">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <img
+          src="https://media.discordapp.net/attachments/361424692172816387/773495494777372673/uoJSHdx704AAAAASUVORK5CYII.png"
+          alt="TU" width="300" height="75" /></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-4 my-lg-0">
+          <div class="dropdown navbar-nav ">
+            <button class="btn btn-default dropdown-toggle  none btn-sm " type="button" id="dropdownMenu1"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="glyphicon-align-justify "></span><%= prefix%>. <%= name_en %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="http://localhost:5000/logout" class="dropdown-item a1">
+                  <i class="fas fa-sign-out-alt"></i>
+                  Log out</a></li>
+            </ul>
+          </div>
+          <li class="nav-item"><i class="fas fa-user fa-3x"></i> </li>
+        </ul>
+      </div>
+      <div id="menuToggle">
+        <!--
+        A fake / hidden checkbox is used as click reciever,
+        so you can use the :checked selector on it.
+        -->
+        <input type="checkbox" />
+
+        <!--
+        Some spans to act as a hamburger.
+        
+        They are acting like a real hamburger,
+        not that McDonalds stuff.
+        -->
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <!--
+        Too bad the menu has to be inside of the button
+        but hey, it's pure CSS magic.
+        -->
+        <ul id="menu">
+          <a class="my-a" href="http://localhost:5000/welcome/<%- name_id -%>">
+            <li>Home</li>
+          </a>
+          <a class="my-a" href="http://localhost:5000/setCase/<%- name_id -%>">
+            <li>ข้อมูลส่วนบุคคล</li>
+          </a>
+          <a class="my-a" href="http://localhost:5000/form/<%- name_id -%>">
+            <li>ลงทะเบียนล่าช้า</li>
+          </a>
+          <a class="my-a" href="http://localhost:5000/logout">
+            <li>Logout</li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </nav>

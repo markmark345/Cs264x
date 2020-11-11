@@ -111,13 +111,13 @@ app.get("/setCase/:id", requireJWTAuth , async function (req, res) {
   }
 });
 
-app.get("/from/:id", requireJWTAuth , async function (req, res) {
+app.get("/form/:id", requireJWTAuth , async function (req, res) {
   var name_id = req.params.id;
   const data = await getStudentInfo(name_id);
   console.log(data);
   if (data) {
     let j = JSON.parse(data);
-    res.render("from", 
+    res.render("form", 
     {prefix: j.data.prefixname,
      name_th: j.data.displayname_th,
      name_en: j.data.displayname_en,
@@ -138,7 +138,7 @@ app.post("/login", loginMiddleware, (req, res) => {
     iat: new Date().getTime()//มาจากคำว่า issued at time (สร้างเมื่อ)
  };
  let token = jwt.encode(payload, SECRET);
- res.cookie('jwt', token, {maxAge: 360000});
+ res.cookie('jwt', token, {maxAge: 3600000});
  res.send(userInfo);
 });
 
@@ -150,7 +150,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.post("/api", async (req, res) => {
+app.post("/signin", async (req, res) => {
 
   const temp = await getlogin(req.body.user, req.body.pwd); 
 

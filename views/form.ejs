@@ -2,25 +2,24 @@
 <html>
 
 <head>
-    
+  
   <%- include('header') -%>
 </head>
 
 <body>
   
   <%- include('navdar') -%>
-
   <header class="container">
     <nav aria-label="breadcrumb-fu">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="http://localhost:5000/welcome/<%- name_id -%>">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนบุคคล</li>
-        <li class="breadcrumb-item"><a href="http://localhost:5000/form/<%- name_id -%>">ลงทะเบียนล่าช้า</a></li>
-        
+        <li class="breadcrumb-item"><a href="http://localhost:5000/setCase/<%- name_id -%>">ข้อมูลส่วนบุคคล</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ลงทะเบียนล่าช้า</li>
       </ol>
     </nav>
   </header>
 
+ 
   <%- include('footer') -%>
 
   </div>
