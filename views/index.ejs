@@ -170,7 +170,7 @@
         formBody.push(encodeURIComponent("pwd") + '=' + encodeURIComponent(pw));
         formBody = formBody.join("&").replace( /%20/g, '+' );
         console.log(formBody);
-        postData('http://localhost:5000/api', formBody)
+        postData('http://localhost:5000/login', formBody)
         .then( data => {
           console.log(data);
           if (data.status) {

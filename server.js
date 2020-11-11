@@ -6,28 +6,78 @@ var path = require("path");
 var https = require("https");
 var http = require("https");
 var bodyParser = require("body-parser");
+const jwt = require("jwt-simple");
+const passport = require("passport");
+//ใช้ในการ decode jwt ออกมา
+const ExtractJwt = require("passport-jwt").ExtractJwt;
+//ใช้ในการประกาศ Strategy
+const JwtStrategy = require("passport-jwt").Strategy;
+var cookieParser = require('cookie-parser');
+
 
 var PORT = process.env.PORT || 5000;
 var app = express();
 
+const SECRET = "5555"; //ในการใช้งานจริง คีย์นี้ให้เก็บเป็นความลับ
+
+var cookieExtractor = function(req) {
+  var token = null;
+  if (req && req.cookies) token = req.cookies['jwt'];
+  return token;
+};
+//สร้าง Strategy
+// ExtractJwt.fromHeader("authorization"),
+const jwtOptions = {
+  jwtFromRequest: cookieExtractor,
+  secretOrKey: SECRET
+};
+const jwtAuth = new JwtStrategy(jwtOptions, (payload, done) => {
+  done(null, true);
+});
+//เสียบ Strategy เข้า Passport
+passport.use(jwtAuth);
+//ทำ Passport Middleware
+const requireJWTAuth = passport.authenticate("jwt",{session:false});
+
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", function (req, res) {
-  res.render("index", { });
-});
-
 app.listen(PORT, function () {
   console.log(`Listening on ${PORT}`);
 });
 
-app.get("/welcome/:id", async function(req, res){ 
-  var nameid = req.params.id;
-  console.log(nameid);
-  const data = await getStudentInfo(nameid);
+const loginMiddleware = async (req, res, next) => {
+  const temp = await getlogin(req.body.user, req.body.pwd); 
+  if (temp) {
+    let j = JSON.parse(temp);
+    if (j.status == true) {
+      res.userInfo = temp;
+      next();
+    } else{
+      res.status(422).send('{"status":false}');
+    }
+
+  } else {
+    res.status(422).send('{"status":false}');
+  }
+}
+
+
+app.get("/", function (req, res) {
+  res.render("index", { });
+});
+
+app.get("/test", requireJWTAuth, function (req, res) {
+  res.send("test");
+});
+app.get("/welcome/:id", requireJWTAuth, async function(req, res){ 
+  var name_id = req.params.id;
+  console.log(name_id);
+  const data = await getStudentInfo(name_id);
   console.log(data);
   if (data) {
     let j = JSON.parse(data);
@@ -37,44 +87,68 @@ app.get("/welcome/:id", async function(req, res){
      name_en: j.data.displayname_en,
      email: j.data.email,
      faculty: j.data.faculty,
-     department: j.data.department
+     department: j.data.department,
+     name_id: name_id
      });
   }
-  
-  
+});
 
+app.get("/setCase/:id", requireJWTAuth , async function (req, res) {
+  var name_id = req.params.id;
+  const data = await getStudentInfo(name_id);
+  console.log(data);
+  if (data) {
+    let j = JSON.parse(data);
+    res.render("setCase", 
+    {prefix: j.data.prefixname,
+     name_th: j.data.displayname_th,
+     name_en: j.data.displayname_en,
+     email: j.data.email,
+     faculty: j.data.faculty,
+     department: j.data.department,
+     name_id: name_id
+     });
+  }
+});
+
+app.post("/login", loginMiddleware, (req, res) => {
+  console.log(res.userInfo);
+  let userInfo = JSON.parse(res.userInfo);
+  const payload = {
+    sub: userInfo.username,
+    iat: new Date().getTime()//มาจากคำว่า issued at time (สร้างเมื่อ)
+ };
+ let token = jwt.encode(payload, SECRET);
+ res.cookie('jwt', token, {maxAge: 0});
+ res.send(userInfo);
+});
+
+app.get('/logout', function(req, res){
+  //res.clearCookie('jwt', { path: '/' });
+  res.cookie('jwt', 'xxx', {maxAge: 0});
+  //res.cookie('test', 'xxx', {maxAge: 100});
+  //res.render('index', { });
+  res.redirect('/');
 });
 
 app.post("/api", async (req, res) => {
-  //const queryParams = req.query;
-  //let result = "";
-  //console.log(queryParams);
-  console.log(req.body);
+
   const temp = await getlogin(req.body.user, req.body.pwd); 
-  console.log("temp = " + temp);
+
   if (temp) {
     let j = JSON.parse(temp);
-    console.log(j);
+
     if (j.status == true) {
       res.send(temp);
-      //res.send("Name th: " + j.displayname_th);
+
     } else{
       res.send('{"status":false}');
     }
-    
-    
-    // if (j.data.status == true) {
-    //   res.send("สถานะ:  นักศึกษา")
-    // } else (j.data.status)
-    // req.send("สถานะ: พ้นสถาพ")
+
   } else {
     res.send('{"status":false}');
   }
-  //console.log(result);
-  //res.send(JSON.stringify(temp));
-  //} else {
-  // res.send("login fail");
-  // }
+
 });
 
 const getlogin = (userName, password) => {
