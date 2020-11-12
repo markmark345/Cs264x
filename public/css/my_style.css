@@ -1,0 +1,294 @@
+#mainNav {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  transition: background-color 0.2s ease;
+}
+
+body {
+  background-image: url("https://i.imgur.com/IzgYz7j.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hight {
+  height: 20px;
+}
+
+.none {
+  box-shadow: none !important;
+}
+
+.a1 {
+  color: #6c757d !important;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.margin-top {
+  margin-top: 10px;
+}
+
+.margin-top-menu {
+  margin-top: -10px;
+}
+
+.margin-left {
+  margin-left: 0px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: auto;
+  margin-bottom: 0.5rem;
+}
+
+.container,
+.container-fluid,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bcontainer {
+  box-shadow: 5px 5px #ce0a35;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.acontainer {
+  position: absolute;
+  right: 0;
+  width: 100px;
+}
+
+.headerdataSt {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+  background-color: #ce0a35 !important;
+}
+
+.dataSt {
+  margin-top: 50px;
+  max-width: 600px;
+  height: 400px;
+  margin-left: 50px;
+  border-left: 10px solid #ffb349;
+  background-color: #fcf8f2;
+}
+
+
+
+
+/* .btn btn-default */
+
+/* .login {
+    text-align: center;
+    margin-top: 150px;
+    border: 2px solid black;
+    margin-left: 700px;
+    margin-right: 700px;
+    margin-bottom: 200px;
+    padding: 30px;
+  } */
+
+.my-text-info {
+  padding-left: 20px;
+  margin-left: 20x;
+  color: #0c0c0c;
+}
+
+.button {
+  position: relative;
+  border-radius: 5px;
+  display: block;
+  width: 75px;
+  padding: 10px;
+  text-align: center;
+  color: #fff !important;
+  background: #c00831 !important;
+  border-color: #c00831 !important;
+}
+
+/* body {
+  margin: 0;
+  padding: 0;
+
+   make it look decent enough 
+  background: #232323;
+  color: #cdcdcd;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+
+  overflow-x: hidden;
+   needed because hiding the menu on the right side is not perfect, 
+} */
+
+.my-a {
+  text-decoration: none;
+  color: #232323;
+
+  transition: color 0.3s ease;
+}
+
+.my-a:hover {
+  color: tomato;
+}
+
+#menuToggle {
+  display: block;
+  position: absolute;
+  top: 50px;
+  right: 50px;
+
+  z-index: 1;
+
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0;
+  /* hide this */
+  z-index: 2;
+  /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
+}
+
+/*
+* Just a quick hamburger
+*/
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: #000000;
+  border-radius: 3px;
+
+  z-index: 1;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/* 
+* Transform all the slices of hamburger
+* into a crossmark.
+*/
+#menuToggle input:checked~span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+* But let's hide the middle one.
+*/
+#menuToggle input:checked~span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+* Ohyeah and the last one should go the other direction
+*/
+#menuToggle input:checked~span:nth-last-child(2) {
+  opacity: 1;
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+* Make this absolute positioned
+* at the top left of the screen
+*/
+#menu {
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 0;
+  padding: 50px;
+  padding-top: 125px;
+  right: -50px;
+   
+
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+
+  transform-origin: 0% 0%;
+  transform: translate(0, -100%);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+* And let's fade it in from the left
+*/
+#menuToggle input:checked~ul {
+  transform: scale(1.0, 1.0);
+  opacity: 1;
+}
+
+.recprofile {
+  background-color: #d7eae9;
+  position: auto;
+  left: -3px;
+  top: -3px;
+  width: 237px;
+  height: 107px;
+  z-index: 2;
+}
+.acard-body {
+   
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}

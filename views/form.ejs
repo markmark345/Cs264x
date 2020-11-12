@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <style> 
+  .posOfSub{
+    margin-top: 20px;
+    margin-left: 890px;
+ }
+  </style>
+<head>
+  <%- include('header') -%>
+</head>
+
+<body>
+  
+    <%- include('navdar') -%>
+
+  <header class="container">
+    <nav aria-label="breadcrumb-fu">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="http://localhost:5000/welcome/<%- name_id -%>">Home</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:5000/setCase/<%- name_id -%>">สถานะคำร้องขอ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ลงทะเบียนล่าช้า</li>
+      </ol>
+    </nav>
+  </header>
+   
+  <div class="container">
+    
+  
+    <form>
+ 
+  
+    <div class="lateform">
+      <form action="/">
+        <div class="card">
+          <div class="card-header">
+           แบบฟอร์มลงทะเบียนล่าช้า//กรอกข้อมูลให้ถูกต้องเเละครบถ้วน
+          </div>
+          <div class="card-body">
+            <div class="info">
+              <div class="row">
+                
+                  
+                  <p>  <h6 class="my-text-info">คุณคือ  <%= name_th %>     เลขทะเบียน <%= name_id %>  </h6> </p> &nbsp;&nbsp;&nbsp;&nbsp;  <label for="year">ชั้นปีที่ &ensp;</label><br>
+                 
+                <select id="year" name="year">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <h6 class="my-text-info">สาขา  <%=department %></h6>
+              <div class="row">
+
+              </div>
+              <div class="row">
+                <h6>ข้อมูลส่วนตัว : </h6>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name=" address1" placeholder="ที่อยู่ที่ติดต่อได้">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <input type="text" name="address2 " placeholder="แขวง/ตำบล">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" name="address3 " placeholder="เขต/อำเภอ">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <input type="text" name=" address4" placeholder="จังหวัด">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" name="Zip" placeholder="รหัสไปรษณีย์">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <input type="text" name="numberphone1" placeholder="โทรศัพท์ติดต่อนักศึกษา">
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" name="numberphone2" placeholder="โทรศัพท์ติดต่อผู้ปกครอง">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" name="Advisor" placeholder="อาจารย์ที่ปรึกษา">
+                </div>
+              </div>
+              <div class="row">
+
+              </div>
+              <div class="row">
+                <h6>ประสงค์ยื่นคำร้อง :</h6>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <input type="checkbox" id="จดทะเบียนล่าช้า" name="จดทะเบียนล่าช้า" value="จดทะเบียนล่าช้า">
+                </div>
+                <div class="col-3">
+                  <label for="จดทะเบียนล่าช้า">จดทะเบียนล่าช้า/เพิ่มล่าช้า</label><br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <input type="text" name="code-subject" placeholder="รหัสวิชา">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" name="name-subject" placeholder="ชื่อวิชา">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text" name="section-subject" placeholder="Section">
+                </div>
+              </div>
+              <div class="row">
+                <h6>เหตุผลที่ยื่นคำร้อง : </h6>
+              </div>
+              <div>
+                <textarea rows="8" cols="110"></textarea>
+              </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <label for="file-upload" class="custom-file-upload">
+                    อัพโหลดไฟล์ :
+                  </label>
+                </div>
+                <div class="col-sm-2">
+                  <input id="file-upload" type="file"/> <br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <button class="btn btn-success"onclick="myFunction()" style="color:white">ยินยัน</button>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </form>
+    </div>
+    <br>
+    <%- include('footer') -%> 
+    </div>
+     
+  </div>
+   
+  <script>
+    function myFunction() {
+      alert("ลงทะเบียนคำขอของรายวิชาเสร็จสิ้น");
+    }
+    </script>
+   
+ 
+
+   
+</body>
+
+</html>
